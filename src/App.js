@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import styled, { ThemeProvider } from 'styled-components';
+import Header from './components/Header';
 
+const theme = {
+  lightYellow:  '#ffffcc',
+  lightBlue: '#e5f4fe',
+  boldBlue: '#5fa2cf',
+  boldYellow: '#f0f046',
+  offwhite: '#EDEDED',
+  maxWidth: "1000px", 
+  black: '#393939', 
+  boxS: '0 12px 24px 0 rgba(0, 0, 0, 0.09)'
+}
+
+const StyledPage = styled.div`
+  background-color: ${props => props.theme.offwhite};
+  main {
+    background-color: lightyellow;
+  }
+  a {
+    text-decoration: none
+  }
+`;
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <StyledPage className="App">
+        <Header />
+        <main>
+          
+        </main>
+      </StyledPage>
+    </ThemeProvider>
   );
 }
 
