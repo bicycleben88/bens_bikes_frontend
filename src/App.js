@@ -1,5 +1,10 @@
+import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import { Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
+import Items from './pages/Items'
+
+export const GlobalContext = React.createContext(null)
 
 const theme = {
   lightYellow:  '#ffffcc',
@@ -9,28 +14,37 @@ const theme = {
   offwhite: '#EDEDED',
   maxWidth: "1000px", 
   black: '#393939', 
-  boxS: '0 12px 24px 0 rgba(0, 0, 0, 0.09)'
+  boxS: '0 12px 24px 0 #f0f046'
 }
 
 const StyledPage = styled.div`
-  background-color: ${props => props.theme.offwhite};
   main {
     background-color: lightyellow;
+    height: 600px;
+    margin-top: 2rem;
   }
   a {
     text-decoration: none
   }
 `;
+
 function App() {
+  const [globalState, setGlobalState] = React.useState({
+    url: "http://localhost:3000"
+  });
   return (
+    <GlobalContext.Provider value={{globalState, setGlobalState}}>
     <ThemeProvider theme={theme}>
       <StyledPage className="App">
         <Header />
         <main>
-          
+          <Switch>
+            <Route exact path="/" render={rProps => <Items {...rProps} />} />
+          </Switch>
         </main>
       </StyledPage>
     </ThemeProvider>
+    </GlobalContext.Provider>
   );
 }
 

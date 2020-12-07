@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Nav from './Nav';
+import HeaderStyles from './styles/HeaderStyles';
 
 const Logo = styled.h1`
     font-size: 4rem;
@@ -20,10 +21,10 @@ const Logo = styled.h1`
 
 const Header = (props) => {
 return(
-    <>
+    <HeaderStyles>
         <Logo><Link to="/">Ben's Bikes</Link></Logo>
         <Nav />
-    </>
+    </HeaderStyles>
 )
 };
 
