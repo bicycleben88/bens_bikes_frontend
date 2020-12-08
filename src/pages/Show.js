@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import BuyButton from '../components/BuyButton';
+import BigButton from '../components/BigButton';
 
 const ItemContainer = styled.div`
     display: flex;
@@ -31,7 +31,9 @@ const Show = (props) => {
             <h1>{item.name}</h1>
             <div style={{position: "relative"}}>
                 <img src={item.largeimage} alt={item.name} />
-                <Link to='/cart'><BuyButton>Buy Me!</BuyButton></Link>
+                <Link to='/cart'>
+                    <BigButton label="Add to Cart"/>
+                </Link>
             </div>
             <h4>{item.description}</h4>
             <p>Left In Stock: {item.qty}</p>
