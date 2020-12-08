@@ -7,14 +7,13 @@ const NavStyles = styled.nav`
     justify-content: flex-end;
     a {
         padding: .5rem 1rem;
-        border-left: 1px solid ${props => props.theme.boldBlue};
+        border-left: 1px solid ${props => props.theme.lightBlue};
         font-size: 2rem;
-        color: ${props => props.theme.boldBlue};
+        color: ${props => props.theme.lightBlue};
         text-transform: uppercase;
     }
     a:hover {
-        color: ${props => props.theme.lightBlue};
-        background-color: ${props => props.theme.boldBlue};
+        background-color: rgba(0, 0, 0, 0.4);
     }
     @media (max-width: 700px) {
         justify-content: center

@@ -15,11 +15,11 @@ const Items = (props) => {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
-        align-items: flex-end;
+        align-items: flex-start;
         margin: 0 auto;
         max-width: ${props => props.theme.maxWidth};
         .carousel{
-            align-self: flex-start;
+            align-self: flex-end;
             img {
                 width: 1000px;
                 height: 600px;
@@ -44,12 +44,12 @@ const Items = (props) => {
         return (
             <div>
                 <ItemsContainer>
+                    {items.map((item) => <Item item={item} />)}
                     <Carousel 
                         images={carouselImages}
                         thumb={true}
                         loop={true}
                         autoplay={4000} />
-                    {items.map((item) => <Item item={item} />)}
                 </ItemsContainer>
             </div>
         )
