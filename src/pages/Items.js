@@ -9,9 +9,22 @@ const Items = (props) => {
     const { globalState } = React.useContext(GlobalContext);
     const { url } = globalState;
     const [items, setItems] = React.useState([]);
+    let carouselImages = [];
 
     const ItemsContainer = styled.div`
         display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-items: flex-end;
+        margin: 0 auto;
+        max-width: ${props => props.theme.maxWidth};
+        .carousel{
+            align-self: flex-start;
+            img {
+                width: 1000px;
+                height: 600px;
+            }
+        }
     `;
     
     const getItems = async () => {
@@ -26,11 +39,19 @@ const Items = (props) => {
 
     const loaded = () => {
         
+        items.map((item) => carouselImages.push(item.largeimage));
         
         return (
-            <ItemsContainer>
-                {items.map((item) => <Item item={item} />)}
-            </ItemsContainer>
+            <div>
+                <ItemsContainer>
+                    <Carousel 
+                        images={carouselImages}
+                        thumb={true}
+                        loop={true}
+                        autoplay={4000} />
+                    {items.map((item) => <Item item={item} />)}
+                </ItemsContainer>
+            </div>
         )
     };
 

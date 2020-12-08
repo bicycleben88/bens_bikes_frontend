@@ -12,7 +12,7 @@ const theme = {
   boldBlue: '#5fa2cf',
   boldYellow: '#f0f046',
   offwhite: '#EDEDED',
-  maxWidth: "1000px", 
+  maxWidth: "1100px", 
   black: '#393939', 
   boxS: '0 12px 24px 0 #f0f046'
 }
@@ -20,7 +20,7 @@ const theme = {
 const StyledPage = styled.div`
   main {
     background-color: lightyellow;
-    height: 600px;
+    height: 100%;
     margin-top: 2rem;
   }
   a {

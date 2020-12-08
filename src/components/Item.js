@@ -6,14 +6,15 @@ const ItemStyles = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 400px;
-    background-color: white;
+    width: 200px;
     position: relative;
+    background-color: white;
     box-shadow: ${props => props.theme.boxS};
     text-align: center;
     img {
         width: 200px;
-        align-self: center
+        align-self: center;
+        height: 133px;
     }
 `;
 
