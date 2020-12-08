@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import Items from './pages/Items'
+import Show from './pages/Show';
 
 export const GlobalContext = React.createContext(null)
 
@@ -30,8 +31,10 @@ const StyledPage = styled.div`
 
 function App() {
   const [globalState, setGlobalState] = React.useState({
-    url: "http://localhost:3000"
+    url: "http://localhost:3000",
+    item: null,
   });
+  
   return (
     <GlobalContext.Provider value={{globalState, setGlobalState}}>
     <ThemeProvider theme={theme}>
@@ -39,7 +42,12 @@ function App() {
         <Header />
         <main>
           <Switch>
-            <Route exact path="/" render={rProps => <Items {...rProps} />} />
+            <Route exact path="/" 
+              render={rProps => 
+              <Items {...rProps} />} />
+            <Route exact path="/show" 
+              render={rProps => 
+              <Show {...rProps}  item={globalState.item} />} />
           </Switch>
         </main>
       </StyledPage>
