@@ -31,7 +31,7 @@ return(
     <HeaderStyles>
         <Logo><Link to="/">Ben's Bikes</Link></Logo>
         <Nav />
-        <SubHeading>Badass Bikes. And the Gear to go with Them</SubHeading>
+        <SubHeading>Badass Bikes. And the Gear to go with Them.</SubHeading>
     </HeaderStyles>
 )
 };

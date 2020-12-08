@@ -1,7 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
 
-const BuyStyles = styled.div`
+const BigButtonStyles = styled.div`
     background-color: darkorange;
     width: 125px; 
     position: absolute;
@@ -11,8 +10,4 @@ const BuyStyles = styled.div`
     font-size: 2rem;
 `;
 
-const BuyButton = () => {
-    return <BuyStyles>Buy Me!</BuyStyles>
-};
-
-export default BuyButton;
+export default BigButtonStyles;

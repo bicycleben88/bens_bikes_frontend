@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const PriceStyles = styled.div`
+const SmallButtonStyles = styled.div`
     background-color: darkorange;
     width: 75px; 
     position: absolute;
@@ -10,4 +10,4 @@ const PriceStyles = styled.div`
     font-size: 1.5rem;
 `;
 
-export default PriceStyles;
+export default SmallButtonStyles;

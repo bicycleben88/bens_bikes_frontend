@@ -1,33 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import PriceStyles from './styles/PriceStyles';
+import SmallButton from '../components/SmallButton';
 import { GlobalContext } from '../App';
-
-const ItemStyles = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 200px;
-    position: relative;
-    background-color: white;
-    box-shadow: ${props => props.theme.boxS};
-    text-align: center;
-    img {
-        width: 200px;
-        align-self: center;
-        height: 133px;
-    }
-    h3 {
-        font-weight: 2500;
-    }
-    a {
-        color: ${props => props.theme.black}
-    }
-    a:hover{
-        text-decoration: underline;
-    }
-`;
+import ItemStyles from '../components/styles/ItemStyles';
 
 const Item = (props) => {
     const { globalState, setGlobalState } = React.useContext(GlobalContext);
@@ -38,11 +13,11 @@ const Item = (props) => {
 
     return(
         <ItemStyles>
-            <PriceStyles>
-                {item.price}
-            </PriceStyles>
+            <SmallButton label={item.price} />
             <img src={item.image} alt={item.name}/>
-            <Link to="/show" onClick={() => {handleClick(item)}}><h3>{item.name}</h3></Link>
+            <Link to="/show" onClick={() => {handleClick(item)}}>
+                <h3>{item.name}</h3>
+            </Link>
         </ItemStyles>
     )
 };

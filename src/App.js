@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import Items from './pages/Items'
 import Show from './pages/Show';
+import Cart from './pages/Cart';
 
 export const GlobalContext = React.createContext(null)
 
@@ -48,6 +49,9 @@ function App() {
             <Route exact path="/show" 
               render={rProps => 
               <Show {...rProps}  item={globalState.item} />} />
+            <Route exact path="/cart" 
+              render={rProps => 
+              <Cart {...rProps}  item={globalState.item} />} />
           </Switch>
         </main>
       </StyledPage>
