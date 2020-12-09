@@ -23,7 +23,7 @@ const Cart = (props) => {
     const deleteItemAndOrder = async ( item_id ,order_id) => {
         await fetch(`${url}/cartitems/${item_id}`, {
             method: "DELETE"
-        })
+        });
         await fetch(`${url}/orders/${order_id}`, {
             method: "DELETE"
         });
@@ -37,8 +37,11 @@ const Cart = (props) => {
     const loaded = () => {
         return(
             <CartContainer>
-                <CartItem item={orders[orders.length -1].cartitems} deleteFunction={deleteItemAndOrder} />
-                <CheckOut item={orders[orders.length -1].cartitems} />
+                <CartItem 
+                    item={orders[orders.length -1].cartitems} 
+                    deleteFunction={deleteItemAndOrder} />
+                <CheckOut 
+                    item={orders[orders.length -1].cartitems} />
             </CartContainer>
         )
     };

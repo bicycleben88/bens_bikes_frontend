@@ -27,13 +27,13 @@ const SubHeading = styled.h2`
 `;
 
 const Header = (props) => {
-return(
-    <HeaderStyles>
-        <Logo><Link to="/">Ben's Bikes</Link></Logo>
-        <Nav />
-        <SubHeading>Badass Bikes. And the Gear to go with Them.</SubHeading>
-    </HeaderStyles>
-)
+    return(
+        <HeaderStyles>
+            <Logo><Link to="/">Ben's Bikes</Link></Logo>
+            <Nav />
+            <SubHeading>Badass Bikes. And the Gear to go with Them.</SubHeading>
+        </HeaderStyles>
+    )
 };
 
 export default Header;
