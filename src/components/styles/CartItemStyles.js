@@ -2,13 +2,14 @@ import styled from 'styled-components';
 
 const CartItemStyles = styled.div`
     display: flex;
-    background-color: ${props => props.theme.offwhite};
-    margin: .5rem;
+    background-color: white;
+    box-shadow: ${props => props.theme.boxS};
+    padding: .5rem;
     width: 600px;
     height: 350px;
     align-items: center;
     h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
     .cart-item-image {
         width: 250px;
@@ -17,14 +18,13 @@ const CartItemStyles = styled.div`
         background-repeat: no-repeat;
         background-position: center;
         background-color: ${props => props.theme.lightBlue};
-        margin: 1rem;
     }
     .cart-item-remove{
         display: flex;
         flex-direction: column;
         align-items: flex-end;
+        height: 100%;
         flex: 1;
-        padding-right: 1rem;
         div {
             position: relative;
         }

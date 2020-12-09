@@ -3,7 +3,7 @@ import SmallButtonStyles from './styles/SmallButtonStyle';
 
 const SmallButton = (props) => {
     return(
-        <SmallButtonStyles>{props.label}</SmallButtonStyles>
+        <SmallButtonStyles onClick={() => props.click(props.id)}>{props.label}</SmallButtonStyles>
     )
 };
 
