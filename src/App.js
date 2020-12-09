@@ -13,7 +13,7 @@ const theme = {
   lightBlue: '#e5f4fe',
   boldBlue: '#5fa2cf',
   boldYellow: '#f0f046',
-  offwhite: '#EDEDED',
+  offwhite: '#f8f8ff',
   maxWidth: "1100px", 
   black: '#393939', 
   boxS: '0 12px 24px 0 #f0f046'
@@ -24,6 +24,7 @@ const StyledPage = styled.div`
     background-color: lightyellow;
     height: 100%;
     margin-top: 2rem;
+    padding: .5rem;
   }
   a {
     text-decoration: none
