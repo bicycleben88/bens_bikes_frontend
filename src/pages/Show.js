@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import BigButton from '../components/BigButton';
 import { GlobalContext } from '../App';
+import BigButtonStyles from '../components/styles/BigButtonStyles';
 
 const ItemContainer = styled.div`
     display: flex;
@@ -56,11 +55,15 @@ const Show = (props) => {
     return(
         <ItemContainer>
             <h1>{item.name}</h1>
-            <div style={{position: "relative"}}>
-                <img src={item.largeimage} alt={item.name} />
-                <Link to='/cart' onClick={() => createOrder(item)}>
-                    <BigButton label="Add to Cart" />
-                </Link>
+            <div 
+                style={{position: "relative"}}>
+                <img 
+                    src={item.largeimage} 
+                    alt={item.name} />
+                <BigButtonStyles 
+                    onClick={() => createOrder(item)}>
+                    Add To Cart
+                </BigButtonStyles>
             </div>
             <h4>{item.description}</h4>
             <p>Left In Stock: {item.qty}</p>

@@ -44,7 +44,7 @@ const Items = (props) => {
         return (
             <div>
                 <ItemsContainer>
-                    {items.map((item) => <Item item={item} />)}
+                    {items.map((item) => <Item item={item} key={item.id}/>)}
                     <Carousel 
                         images={carouselImages}
                         thumb={true}

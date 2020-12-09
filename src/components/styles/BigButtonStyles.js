@@ -8,6 +8,9 @@ const BigButtonStyles = styled.div`
     top: -2px;
     text-align: center;
     font-size: 2rem;
+    &:hover {
+        cursor: pointer;
+    }
 `;
 
 export default BigButtonStyles;

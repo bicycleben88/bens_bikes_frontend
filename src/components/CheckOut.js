@@ -1,6 +1,6 @@
 import React from 'react';
 import CheckOutStyles from '../components/styles/CheckOutStyles';
-import BigButton from '../components/BigButton';
+import BigButtonStyles from '../components/styles/BigButtonStyles';
 
 const CheckOut = (props) => {
     const { item } = props;
@@ -17,8 +17,10 @@ const CheckOut = (props) => {
             <h3>19.99</h3>
             <hr/>
             <h1>Total</h1>
-            <h2>INSERT PRICE</h2>
-            <BigButton label="Check Out" />
+            <h2 style={{color: "red"}}>{parseInt(item[0].price) + 19.99}</h2>
+            <BigButtonStyles>
+                Check Out
+            </BigButtonStyles>
         </CheckOutStyles>
     )
 };
