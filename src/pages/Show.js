@@ -24,20 +24,25 @@ const ItemContainer = styled.div`
 `;
 
 const Show = (props) => {
-    const { globalState } = React.useContext(GlobalContext);
-    const { url } = globalState;
+    const { globalState, setGlobalState } = React.useContext(GlobalContext);
+    const { url, itemsInCart, cartId } = globalState;
     const { item } = props;
 
     const createOrder = async (item) => {
-        const response = await fetch(`${url}/orders`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/JSON"
-            },
-            body: JSON.stringify({qty: 1})
-        });
-        const data = await response.json();
-        await createCartItem(data.id, item);
+        if (!itemsInCart) {
+            const response = await fetch(`${url}/orders`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/JSON"
+                },
+                body: JSON.stringify({qty: 1})
+            });
+            const data = await response.json();
+            await createCartItem(data.id, item);
+            await setGlobalState({...globalState, cartId: data.id, itemsInCart: true})
+        } else {
+            createCartItem(cartId, item);
+        };
     };
 
     const createCartItem = async (id, item) => {

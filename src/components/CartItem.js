@@ -8,13 +8,13 @@ const CartItem = (props) => {
     return(
         <CartItemStyles>
             <div 
-                style={{backgroundImage: `url("${item[0].image}")` }} 
+                style={{backgroundImage: `url("${item.image}")` }} 
                 className="cart-item-image" />
             <div className="cart-item-remove">
-                <h1>{item[0].name}</h1>
-                <h3>{item[0].price}</h3>
+                <h1>{item.name}</h1>
+                <h3>{item.price}</h3>
                 <SmallButtonStyles 
-                    onClick={() => deleteFunction( item[0].id, item[0].order_id)}
+                    onClick={() => deleteFunction( item.id, item.order_id)}
                     style={{width: "100px"}}>
                     Remove Item
                 </SmallButtonStyles>
