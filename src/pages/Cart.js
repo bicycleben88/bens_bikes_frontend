@@ -37,9 +37,13 @@ const Cart = (props) => {
     const loaded = () => {
         return(
             <CartContainer>
-                <CartItem 
-                    item={orders[orders.length -1].cartitems} 
-                    deleteFunction={deleteItemAndOrder} />
+                {orders[0].cartitems.map(item => {
+                    return(
+                        <CartItem 
+                            item={item} 
+                            deleteFunction={deleteItemAndOrder} />
+                    )
+                })}
                 <CheckOut 
                     item={orders[orders.length -1].cartitems} />
             </CartContainer>

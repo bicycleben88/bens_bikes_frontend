@@ -17,7 +17,7 @@ const CheckOut = (props) => {
             <h3>19.99</h3>
             <hr/>
             <h1>Total</h1>
-            <h2 style={{color: "red"}}>{parseInt(item[0].price) + 19.99}</h2>
+            <h2 style={{color: "red"}}>{parseInt(item.price) + 19.99}</h2>
             <BigButtonStyles>
                 Check Out
             </BigButtonStyles>

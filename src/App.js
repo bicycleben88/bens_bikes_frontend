@@ -35,6 +35,8 @@ function App() {
   const [globalState, setGlobalState] = React.useState({
     url: "http://localhost:3000",
     item: null,
+    itemsInCart: false,
+    cartId: '',
   });
   
   return (
