@@ -1,55 +1,67 @@
 import React from 'react';
-import styled from 'styled-components';
+import CartContainer from '../components/styles/CartContainer';
 import { GlobalContext } from '../App';
 import CartItem from '../components/CartItem';
 import CheckOut from '../components/CheckOut';
 
-const CartContainer = styled.div`
-    display: flex;
-    justify-content: space-between;
-`;
-
 const Cart = (props) => {
-    const { globalState } = React.useContext(GlobalContext);
-    const { url } = globalState;
-    const [orders, setOrders] = React.useState([]);
+    const { globalState, setGlobalState } = React.useContext(GlobalContext);
+    const { url, orderId } = globalState;
+    const [order, setOrder] = React.useState(null);
 
-    const getOrders = async () => {
-        const response = await fetch(`${url}/orders`);
-        const data = await response.json();
-        setOrders(data);
+    const getOrder = async () => {
+        if (orderId) {
+            const response = await fetch(`${url}/orders/${orderId}`);
+            const data = await response.json();
+            await setOrder(data);
+        }
     };
 
-    const deleteItemAndOrder = async ( item_id ,order_id) => {
-        await fetch(`${url}/cartitems/${item_id}`, {
+    const deleteItem = async (id) => {
+        await fetch(`${url}/cartitems/${id}`, {
             method: "DELETE"
         });
-        await fetch(`${url}/orders/${order_id}`, {
-            method: "DELETE"
-        });
-        await getOrders();
     };
 
+    const deleteOrder = async (id) => {
+        await fetch(`${url}/orders/${id}`, {
+            method: "DELETE"
+        });
+        await setOrder(null);
+        await setGlobalState({...globalState, orderId: null});
+    };
+    
+    const handleDelete = (itemId, orderId) => {
+        // if deleting the last item in the cart
+            // delete order
+        if (order.cartitems.length === 1) {
+            deleteOrder(orderId);
+        } else {
+            deleteItem(itemId);
+            getOrder();
+        }
+    };
+    
     React.useEffect(() => {
-        getOrders();
+        getOrder();
     },[])
 
     const loaded = () => {
         return(
             <CartContainer>
-                {orders[0].cartitems.map(item => {
+                {order.cartitems.map(item => {
                     return(
                         <CartItem 
                             item={item} 
-                            deleteFunction={deleteItemAndOrder} />
+                            handleDelete={handleDelete} />
                     )
                 })}
                 <CheckOut 
-                    item={orders[orders.length -1].cartitems} />
+                    item={order.cartitems} />
             </CartContainer>
         )
     };
-    return orders.length > 0 ? loaded() : <h1 style={{textAlign: "center"}}>Your Cart is empty</h1>
+    return order !== null ? loaded() : <h1 style={{textAlign: "center"}}>Your Cart is empty</h1>
 };
 
-export default Cart;
+export default Cart; 

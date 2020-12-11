@@ -1,34 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
 import { GlobalContext } from '../App';
 import BigButtonStyles from '../components/styles/BigButtonStyles';
-
-const ItemContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    img {
-        width: 800px;
-        max-height: 600px;
-    }
-    h1{
-        font-size: 4rem;
-    }
-    h4 {
-        font-size: 2rem;
-        text-align: center;
-    }
-    a {
-        color: ${props => props.theme.black}
-    }
-`;
+import ShowStyles from '../components/styles/ShowStyles';
 
 const Show = (props) => {
     const { globalState, setGlobalState } = React.useContext(GlobalContext);
-    const { url, itemsInCart, cartId } = globalState;
+    const { url, itemsInCart, orderId } = globalState;
     const { item } = props;
 
     const createOrder = async (item) => {
+        // if cart is empty
+            // create a new order
         if (!itemsInCart) {
             const response = await fetch(`${url}/orders`, {
                 method: "POST",
@@ -39,26 +21,26 @@ const Show = (props) => {
             });
             const data = await response.json();
             await createCartItem(data.id, item);
-            await setGlobalState({...globalState, cartId: data.id, itemsInCart: true})
+            await setGlobalState({...globalState, orderId: data.id, itemsInCart: true})
         } else {
-            createCartItem(cartId, item);
+            createCartItem(orderId, item);
         };
     };
 
     const createCartItem = async (id, item) => {
-        const cartItem = {...item, order_id: id}
-        const response = await fetch(`${url}/cartitems`, {
+        // create new item with order_id 
+        const cartItem = {...item, order_id: id};
+        await fetch(`${url}/cartitems`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/JSON", 
             },
             body: JSON.stringify(cartItem)
         });
-        const data = await response.json();
     };
 
     return(
-        <ItemContainer>
+        <ShowStyles>
             <h1>{item.name}</h1>
             <div 
                 style={{position: "relative"}}>
@@ -72,7 +54,7 @@ const Show = (props) => {
             </div>
             <h4>{item.description}</h4>
             <p>Left In Stock: {item.qty}</p>
-        </ItemContainer>
+        </ShowStyles>
     )
 };
 

@@ -1,7 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 import Carousel from 'react-image-carousel';
-
+import ItemsContainer from '../components/styles/ItemsContainer';
 import { GlobalContext } from '../App';
 import Item from '../components/Item';
 
@@ -11,22 +10,6 @@ const Items = (props) => {
     const [items, setItems] = React.useState([]);
     let carouselImages = [];
 
-    const ItemsContainer = styled.div`
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        align-items: flex-start;
-        margin: 0 auto;
-        max-width: ${props => props.theme.maxWidth};
-        .carousel{
-            align-self: flex-end;
-            img {
-                width: 1000px;
-                height: 600px;
-            }
-        }
-    `;
-    
     const getItems = async () => {
         const repsonse = await fetch (`${url}/items`);
         const data = await repsonse.json();

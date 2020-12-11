@@ -19,7 +19,7 @@ const CartItemStyles = styled.div`
         background-position: center;
         background-color: ${props => props.theme.lightBlue};
     }
-    .cart-item-remove{
+    .cart-item-info{
         display: flex;
         flex-direction: column;
         align-items: flex-end;
