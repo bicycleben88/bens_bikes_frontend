@@ -15,7 +15,7 @@ const CartItem = (props) => {
                 <h1>{item.name}</h1>
                 <h3>{item.price}</h3>
                 <SmallButtonStyles 
-                    onClick={() => handleDelete( item.id, item.order_id)}
+                    onClick={() => handleDelete(item.id, item.order_id)}
                     style={{width: "100px"}}>
                     Remove Item
                 </SmallButtonStyles>

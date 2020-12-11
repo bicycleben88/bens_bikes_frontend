@@ -49,15 +49,18 @@ const Cart = (props) => {
     const loaded = () => {
         return(
             <CartContainer>
+                <div>
                 {order.cartitems.map(item => {
                     return(
                         <CartItem 
                             item={item} 
-                            handleDelete={handleDelete} />
+                            handleDelete={handleDelete} 
+                            key={item.id} />
                     )
                 })}
+                </div>
                 <CheckOut 
-                    item={order.cartitems} />
+                    items={order.cartitems} />
             </CartContainer>
         )
     };

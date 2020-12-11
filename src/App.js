@@ -5,8 +5,10 @@ import Header from './components/Header';
 import Items from './pages/Items'
 import Show from './pages/Show';
 import Cart from './pages/Cart';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 
-export const GlobalContext = React.createContext(null)
+export const GlobalContext = React.createContext(null);
 
 const theme = {
   lightYellow:  '#ffffcc',
@@ -55,6 +57,12 @@ function App() {
             <Route exact path="/cart" 
               render={rProps => 
               <Cart {...rProps}  item={globalState.item} />} />
+            <Route exact path="/login"
+              render= {rProps => 
+              <Login {...rProps} />} />
+            <Route exact path="/signup"
+              render= {rProps => 
+              <Signup {...rProps} />} />
           </Switch>
         </main>
       </StyledPage>
