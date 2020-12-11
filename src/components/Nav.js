@@ -5,8 +5,17 @@ import { GlobalContext } from '../App';
 import Badge from '../components/styles/Badge';
 
 const Nav = (props) => {
-    const { globalState } = React.useContext(GlobalContext);
-    const { itemsInOrder } = globalState;
+    const { globalState, setGlobalState } = React.useContext(GlobalContext);
+    const { itemsInOrder, token, } = globalState;
+
+    const logOut = () => {
+        return(
+            <Link to="/" onClick={() => setGlobalState({...globalState, token: null, userId: null})}>
+                Log Out
+            </Link>
+        )
+    };
+    
 
     return(
         <NavStyles>
@@ -15,6 +24,7 @@ const Nav = (props) => {
                 Cart
                 {itemsInOrder ? <Badge><p>!</p></Badge> : null}
             </Link>
+            {token ? logOut() : null}
             <Link to="/login">Log In</Link>
             <Link to="/signup">Sign Up</Link>
         </NavStyles>

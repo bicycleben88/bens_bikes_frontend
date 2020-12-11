@@ -22,6 +22,7 @@ const FormStyles = styled.form`
         font-size: 1.5rem;
         text-decoration: none;
         border: none;
+        padding: .5rem;
     }
     .submit-button:hover{
         cursor: pointer;
