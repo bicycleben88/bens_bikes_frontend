@@ -18,7 +18,7 @@ const theme = {
   offwhite: '#f8f8ff',
   maxWidth: "1100px", 
   black: '#393939', 
-  boxS: '0 12px 24px 0 #f0f046'
+  boxS: '0 12px 12px 0 #f0f046'
 }
 
 const StyledPage = styled.div`
@@ -39,6 +39,8 @@ function App() {
     item: null,
     itemsInOrder: false,
     orderId: null,
+    userId: null,
+    token: null
   });
   
   return (

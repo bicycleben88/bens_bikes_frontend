@@ -3,7 +3,7 @@ import Form from '../components/Form';
 import { GlobalContext } from '../App';
 
 const Login = (props) => {
-    const { globalState } = React.useContext(GlobalContext);
+    const { globalState, setGlobalState } = React.useContext(GlobalContext);
     const { url } = globalState
     const logInUser = async (user) => {
         const response = await fetch(`${url}/login`, {
@@ -14,6 +14,7 @@ const Login = (props) => {
             body: JSON.stringify(user)
         });
         const data = await response.json();
+        await setGlobalState({...globalState, token: data.token, userId: data.user.id});
         props.history.push('/');
     };
     

@@ -5,9 +5,18 @@ import ShowStyles from '../components/styles/ShowStyles';
 
 const Show = (props) => {
     const { globalState, setGlobalState } = React.useContext(GlobalContext);
-    const { url, itemsInOrder, orderId } = globalState;
+    const { url, itemsInOrder, orderId, userId, token } = globalState;
     const { item } = props;
 
+    // run appropriate function when user is logged in 
+    const routeCreateFunctions = () => {
+        if (userId && token) {
+            createOrder(item);
+        } else {
+            props.history.push('/login');
+        }
+    };
+    
     const createOrder = async (item) => {
         // if cart is empty
             // create a new order
@@ -15,9 +24,10 @@ const Show = (props) => {
             const response = await fetch(`${url}/orders`, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/JSON"
+                    "Content-Type": "application/JSON",
+                    Authorization: `bearer: ${token}`
                 },
-                body: JSON.stringify({qty: 1})
+                body: JSON.stringify({qty: 1, user_id: userId})
             });
             const data = await response.json();
             await createCartItem(data.id, item);
@@ -34,6 +44,7 @@ const Show = (props) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/JSON", 
+                Authorization: `bearer: ${token}`
             },
             body: JSON.stringify(cartItem)
         });
@@ -48,7 +59,7 @@ const Show = (props) => {
                     src={item.largeimage} 
                     alt={item.name} />
                 <BigButtonStyles 
-                    onClick={() => createOrder(item)}>
+                    onClick={() => routeCreateFunctions()}>
                     Add To Cart
                 </BigButtonStyles>
             </div>
