@@ -36,7 +36,7 @@ function App() {
     url: "http://localhost:3000",
     item: null,
     itemsInCart: false,
-    cartId: '',
+    orderId: null,
   });
   
   return (
