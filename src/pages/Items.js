@@ -35,7 +35,7 @@ const Items = (props) => {
                         autoplay={4000} />
                 </ItemsContainer>
             </div>
-        )
+        );
     };
 
     return (

@@ -5,6 +5,7 @@ import { GlobalContext } from '../App';
 const Signup = (props) => {
     const { globalState } = React.useContext(GlobalContext);
     const { url } = globalState
+    
     const signUpUser = async (user) => {
         await fetch(`${url}/users`, {
             method: "POST",
@@ -21,7 +22,7 @@ const Signup = (props) => {
             label="Sign Up"
             submit={signUpUser}
        />
-    )
+    );
 };
 
 export default Signup;

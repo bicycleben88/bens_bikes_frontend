@@ -27,7 +27,6 @@ const FormStyles = styled.form`
     .submit-button:hover{
         cursor: pointer;
     }
-
 `;
 
 export default FormStyles;

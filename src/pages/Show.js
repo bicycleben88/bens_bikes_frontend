@@ -14,7 +14,7 @@ const Show = (props) => {
             createOrder(item);
         } else {
             props.history.push('/login');
-        }
+        };
     };
     
     const createOrder = async (item) => {
@@ -66,7 +66,7 @@ const Show = (props) => {
             <h4>{item.description}</h4>
             <p>Left In Stock: {item.qty}</p>
         </ShowStyles>
-    )
+    );
 };
 
 export default Show;

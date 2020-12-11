@@ -23,6 +23,10 @@ const ItemStyles = styled.div`
     a:hover{
         text-decoration: underline;
     }
+    @media (max-width: 1100px) {
+        width: 50%;
+        margin: 1rem;
+    } 
 `;
 
 export default ItemStyles;

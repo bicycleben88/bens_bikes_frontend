@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import CheckOutStyles from '../components/styles/CheckOutStyles';
 import BigButtonStyles from '../components/styles/BigButtonStyles';
 
@@ -28,9 +29,11 @@ const CheckOut = (props) => {
             <hr/>
             <h1>Total</h1>
             <h2 style={{color: "red"}}>{parseInt(priceTotal) + 19.99}</h2>
-            <BigButtonStyles>
-                Check Out
-            </BigButtonStyles>
+            <Link to="/spanx">
+                <BigButtonStyles>
+                    Check Out
+                </BigButtonStyles>
+            </Link>
         </CheckOutStyles>
     )
 };

@@ -8,7 +8,7 @@ const Item = (props) => {
     const { globalState, setGlobalState } = React.useContext(GlobalContext);
     const { item } = props;
     const handleClick = (item) => {
-        setGlobalState({...globalState, item: item})
+        setGlobalState({...globalState, item: item});
     };
 
     return(
@@ -25,7 +25,7 @@ const Item = (props) => {
                 <h3>{item.name}</h3>
             </Link>
         </ItemStyles>
-    )
+    );
 };
 
 export default Item;

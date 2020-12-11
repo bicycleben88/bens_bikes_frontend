@@ -14,7 +14,7 @@ const Cart = (props) => {
             const response = await fetch(`${url}/orders/${orderId}`);
             const data = await response.json();
             await setOrder(data);
-        }
+        };
     };
 
     const deleteItem = async (id) => {
@@ -39,31 +39,32 @@ const Cart = (props) => {
         } else {
             deleteItem(itemId);
             getOrder();
-        }
+        };
     };
     
     React.useEffect(() => {
         getOrder();
-    },[])
+    },[]);
 
     const loaded = () => {
         return(
             <CartContainer>
                 <div>
-                {order.cartitems.map(item => {
-                    return(
-                        <CartItem 
-                            item={item} 
-                            handleDelete={handleDelete} 
-                            key={item.id} />
-                    )
-                })}
+                    {order.cartitems.map(item => {
+                        return(
+                            <CartItem 
+                                item={item} 
+                                handleDelete={handleDelete} 
+                                key={item.id} />
+                        )
+                    })}
                 </div>
                 <CheckOut 
                     items={order.cartitems} />
             </CartContainer>
-        )
+        );
     };
+    
     return order !== null ? loaded() : <h1 style={{textAlign: "center"}}>Your Cart is empty</h1>
 };
 

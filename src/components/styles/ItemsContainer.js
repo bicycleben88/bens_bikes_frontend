@@ -14,6 +14,13 @@ const ItemsContainer = styled.div`
             height: 600px;
         }
     }
+    @media (max-width: 1100px) {
+        flex-direction: column;
+        align-items: center;
+        .carousel {
+            display:none;
+        }
+    }
 `;
 
 export default ItemsContainer;
