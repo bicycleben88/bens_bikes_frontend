@@ -1,4 +1,4 @@
-import styled, { ThemeProvider } from 'styled-components';
+import styled from 'styled-components';
 
 const CheckOutStyles = styled.div`
     display: flex;
@@ -18,6 +18,9 @@ const CheckOutStyles = styled.div`
     }
     div:hover{
         cursor: pointer;
+    }
+    a {
+        color: ${props => props.theme.black}
     }
 `;
 

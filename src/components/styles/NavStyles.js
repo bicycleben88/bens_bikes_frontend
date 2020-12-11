@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Nav from '../Nav';
 
 const NavStyles = styled.nav`
     display: flex;

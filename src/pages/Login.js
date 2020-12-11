@@ -5,6 +5,7 @@ import { GlobalContext } from '../App';
 const Login = (props) => {
     const { globalState, setGlobalState } = React.useContext(GlobalContext);
     const { url } = globalState
+
     const logInUser = async (user) => {
         const response = await fetch(`${url}/login`, {
             method: "POST",
@@ -23,7 +24,7 @@ const Login = (props) => {
             label="Log In"
             submit={logInUser}
        />
-    )
+    );
 };
 
 export default Login;

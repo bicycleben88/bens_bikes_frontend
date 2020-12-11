@@ -34,6 +34,17 @@ const CartItemStyles = styled.div`
             justify-self: flex-end;
         }
     }
+    @media (max-width: 900px) {
+        flex-direction: column;
+        width: 300px;
+        .cart-item-image {
+            width: 200px;
+            height: 250px;
+        }
+        .cart-item-info {
+            width: 90%;
+        }
+    }
 `;
 
 export default CartItemStyles;

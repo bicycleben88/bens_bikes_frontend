@@ -12,7 +12,7 @@ const Header = (props) => {
             <Nav />
             <SubHeading>Badass Bikes. And the Gear to go with Them.</SubHeading>
         </HeaderStyles>
-    )
+    );
 };
 
 export default Header;

@@ -7,6 +7,7 @@ import Show from './pages/Show';
 import Cart from './pages/Cart';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Thanks from './pages/Thanks';
 
 export const GlobalContext = React.createContext(null);
 
@@ -27,6 +28,7 @@ const StyledPage = styled.div`
     height: 100%;
     margin-top: 2rem;
     padding: .5rem;
+    min-height: 400px;
   }
   a {
     text-decoration: none
@@ -55,16 +57,21 @@ function App() {
               <Items {...rProps} />} />
             <Route exact path="/show" 
               render={rProps => 
-              <Show {...rProps}  item={globalState.item} />} />
+              <Show {...rProps}  
+                item={globalState.item} />} />
             <Route exact path="/cart" 
               render={rProps => 
-              <Cart {...rProps}  item={globalState.item} />} />
+              <Cart {...rProps}  
+                item={globalState.item} />} />
             <Route exact path="/login"
               render= {rProps => 
               <Login {...rProps} />} />
             <Route exact path="/signup"
               render= {rProps => 
               <Signup {...rProps} />} />
+            <Route exact path="/spanx"
+              render= {rProps => 
+              <Thanks {...rProps} />} />
           </Switch>
         </main>
       </StyledPage>
@@ -72,5 +79,5 @@ function App() {
     </GlobalContext.Provider>
   );
 }
-
+ 
 export default App;
