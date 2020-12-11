@@ -5,13 +5,13 @@ import ShowStyles from '../components/styles/ShowStyles';
 
 const Show = (props) => {
     const { globalState, setGlobalState } = React.useContext(GlobalContext);
-    const { url, itemsInCart, orderId } = globalState;
+    const { url, itemsInOrder, orderId } = globalState;
     const { item } = props;
 
     const createOrder = async (item) => {
         // if cart is empty
             // create a new order
-        if (!itemsInCart) {
+        if (!itemsInOrder) {
             const response = await fetch(`${url}/orders`, {
                 method: "POST",
                 headers: {
@@ -21,7 +21,7 @@ const Show = (props) => {
             });
             const data = await response.json();
             await createCartItem(data.id, item);
-            await setGlobalState({...globalState, orderId: data.id, itemsInCart: true})
+            await setGlobalState({...globalState, orderId: data.id, itemsInOrder: true})
         } else {
             createCartItem(orderId, item);
         };

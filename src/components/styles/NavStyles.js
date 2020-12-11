@@ -10,6 +10,7 @@ const NavStyles = styled.nav`
         font-size: 2rem;
         color: ${props => props.theme.lightBlue};
         text-transform: uppercase;
+        position: relative;
     }
     a:hover {
         background-color: rgba(0, 0, 0, 0.4);

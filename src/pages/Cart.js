@@ -28,7 +28,7 @@ const Cart = (props) => {
             method: "DELETE"
         });
         await setOrder(null);
-        await setGlobalState({...globalState, orderId: null});
+        await setGlobalState({...globalState, orderId: null, itemsInOrder: false});
     };
     
     const handleDelete = (itemId, orderId) => {
