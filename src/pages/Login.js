@@ -1,9 +1,20 @@
 import React from 'react';
 import Form from '../components/Form';
+import { GlobalContext } from '../App';
 
 const Login = (props) => {
-    const logInUser = (user) => {
-        console.log(user)
+    const { globalState } = React.useContext(GlobalContext);
+    const { url } = globalState
+    const logInUser = async (user) => {
+        const response = await fetch(`${url}/login`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/JSON"
+            },
+            body: JSON.stringify(user)
+        });
+        const data = await response.json();
+        props.history.push('/');
     };
     
     return(
