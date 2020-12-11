@@ -5,6 +5,7 @@ const CartItemStyles = styled.div`
     background-color: white;
     box-shadow: ${props => props.theme.boxS};
     padding: .5rem;
+    margin-top: .5rem;
     width: 600px;
     height: 350px;
     align-items: center;
