@@ -8,6 +8,7 @@ const CheckOutStyles = styled.div`
     width: 200px;
     background-color: white;
     box-shadow: ${props => props.theme.boxS};
+    height: 100%;
     h1 {
         background-color: ${props => props.theme.lightBlue};
         width: 100%;
