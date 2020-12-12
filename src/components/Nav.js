@@ -10,13 +10,14 @@ const Nav = (props) => {
 
     const logOut = () => {
         return(
-            <Link to="/" onClick={() => setGlobalState({...globalState, token: null, userId: null})}>
+            <Link 
+                to="/" 
+                onClick={() => setGlobalState({...globalState, token: null, userId: null})}>
                 Log Out
             </Link>
         );
     };
     
-
     return(
         <NavStyles>
             <Link to="/">Items</Link>

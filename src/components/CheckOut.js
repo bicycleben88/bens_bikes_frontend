@@ -2,8 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import CheckOutStyles from '../components/styles/CheckOutStyles';
 import BigButtonStyles from '../components/styles/BigButtonStyles';
+import { GlobalContext } from '../App';
 
 const CheckOut = (props) => {
+    const { globalState, setGlobalState } = React.useContext(GlobalContext);
     const { items } = props;
     let itemNames = [];
     let itemPrices = [];
@@ -15,6 +17,10 @@ const CheckOut = (props) => {
 
     const priceTotal = itemPrices.reduce((acc, val) => parseInt(acc) + parseInt(val));
 
+    const changeGlobalState = () => {
+        setGlobalState({...globalState, itemsInOrder: false, orderId: null});
+    };
+    
     return(
         <CheckOutStyles>
             <h1>Your Cart</h1>
@@ -29,7 +35,9 @@ const CheckOut = (props) => {
             <hr/>
             <h1>Total</h1>
             <h2 style={{color: "red"}}>{parseInt(priceTotal) + 19.99}</h2>
-            <Link to="/spanx">
+            <Link 
+                to="/spanx" 
+                onClick={() => changeGlobalState()}>
                 <BigButtonStyles>
                     Check Out
                 </BigButtonStyles>
