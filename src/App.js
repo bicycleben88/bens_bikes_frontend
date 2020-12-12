@@ -37,7 +37,7 @@ const StyledPage = styled.div`
 
 function App() {
   const [globalState, setGlobalState] = React.useState({
-    url: "http://localhost:3000",
+    url: "https://bens-bikes-backend.herokuapp.com",
     item: null,
     itemsInOrder: false,
     orderId: null,
