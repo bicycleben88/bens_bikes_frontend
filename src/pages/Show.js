@@ -30,23 +30,23 @@ const Show = (props) => {
                 body: JSON.stringify({qty: 1, user_id: userId})
             });
             const data = await response.json();
-            await createCartItem(data.id, item);
+            await createOrderItem(data.id, item);
             await setGlobalState({...globalState, orderId: data.id, itemsInOrder: true})
         } else {
-            createCartItem(orderId, item);
+            createOrderItem(orderId, item);
         };
     };
 
-    const createCartItem = async (id, item) => {
+    const createOrderItem = async (id, item) => {
         // create new item with order_id 
-        const cartItem = {...item, order_id: id};
+        const orderItem = {...item, order_id: id};
         await fetch(`${url}/cartitems`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/JSON", 
                 Authorization: `bearer: ${token}`
             },
-            body: JSON.stringify(cartItem)
+            body: JSON.stringify(orderItem)
         });
     };
 
