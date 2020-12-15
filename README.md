@@ -6,7 +6,7 @@
 >
 > [bens-bikes-backend.herokuapp.com](https://bens-bikes-backend.herokuapp.com/items)
 
-! [Landing page to Ben's Bikes] (https://i.imgur.com/Kt3juRq.jpg)
+![Landing page to Ben's Bikes](https://i.imgur.com/Kt3juRq.jpg)
 
 ## Technologies Used
 
