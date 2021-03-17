@@ -1,5 +1,9 @@
 # Ben's Bikes
 
+This is a front end e-commerce web application built with React. Users can create an account, browse thru products, add items to a cart & checkout. It accesses a full CRUD API built with Ruby on Rails that follows RESTful convention.
+
+## [Video Walkthru](https://www.youtube.com/playlist?list=PLjYC3ZkfhqCpDJl-34_mycn5KZcrrsPKR)
+
 > ### Live Earls:
 >
 > [bens-bikes-frontend.vercel.app](https://bens-bikes-frontend.vercel.app/)
@@ -24,30 +28,28 @@
 > - JWT
 > - BCrypt
 
-## MVP
+## Features & Functions
 
-> ### Front End:
+> Custom Hooks
 >
-> - User can add an item to an order
-> - Index page with items in stock
-> - Show page with description of item & 'Add to Cart' button
-> - User can delete an item from an order
->
-> ### Back End:
->
-> - Two models: items and orders
-> - CRUD items and orders with RESTful routes
+> - useCart()
+>   - use createContext() to create Provider component
+> - ![local state provider](https://i.imgur.com/XtDjpIt.png)
+>   - create higher level component called \<CartStateProvider>
+>     - add state & functions
+>     - return Provider component w/ all values that will be passed down as props to child components
+> - ![cart state provider](https://i.imgur.com/ymSXt0m.png)
+>   - create custom hook using useContext()
+> - ![use cart hook](https://i.imgur.com/WRMtv1D.png)
+>   - export hook & provider component
+> - ![export](https://i.imgur.com/4vwOCVi.png)
 
-## Stretch
+## Notes
 
-> ### Front End:
->
-> - Log in & Sign up pages w/JWT
-> - User can add multiple items to a cart
-> - User can delete one item from a cart while leaving intact the rest of the order
->
-> ### Back End:
->
-> - CartItems model with One to Many relationship with an Order
-> - User model with One to Many relationship with an Order
-> - Authentication middleware w/JWT & BCrypt
+> - Context.Provider allows consuming components to subscribe to context changes
+
+## Contact
+
+> - [LinkedIn](https://www.linkedin.com/in/benjamin-alt-higginbotham/)
+> - [Portfolio](https://higginbotham.fun/)
+> - [Tweet @BenMichaelJord1](https://twitter.com/BenMichaelJord1)
