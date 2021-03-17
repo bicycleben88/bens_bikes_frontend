@@ -17,7 +17,7 @@ const CartStyles = styled.div`
   transition: transform 0.2s;
   ${(props) => props.open && `transform: translateX(0)`}
 `;
-const Cart = ({ cartCSS }) => {
+const Cart = () => {
   const { cartOpen, closeCart } = useCart();
 
   return (

@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Castoro&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Castoro&family=Playfair+Display&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Castoro&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Castoro&family=Playfair+Display&display=swap");
 :root {
-  --light-yellow:  #ffffcc;
+  --light-yellow: #ffffcc;
   --light-blue: #e5f4fe;
   --bold-blue: #5fa2cf;
   --bold-yellow: #f0f046;
@@ -11,10 +11,17 @@ html {
   box-sizing: border-box;
   font-size: 10px;
 }
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Castoro', serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Castoro", serif;
 }
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 body {
@@ -22,5 +29,8 @@ body {
   margin: 0 auto;
   padding: 0;
   line-height: 2;
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
+}
+header .cart-btn {
+  font-family: "Playfair Display", serif;
 }
