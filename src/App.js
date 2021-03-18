@@ -47,6 +47,13 @@ function App() {
     token: null,
   });
 
+  React.useEffect(() => {
+    const token = JSON.parse(window.localStorage.getItem("token"));
+    if (token) {
+      setGlobalState({ ...globalState, token: token });
+    }
+  }, []);
+  console.log(globalState);
   return (
     <GlobalContext.Provider value={{ globalState, setGlobalState }}>
       <ThemeProvider theme={theme}>

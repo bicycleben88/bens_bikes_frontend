@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useCart } from "../lib/cartState";
 import { GlobalContext } from "../App";
 import CartItem from "./CartItem";
+// import useUser from "../lib/useUser";
 
 const CartStyles = styled.div`
   display: flex;
@@ -32,9 +33,25 @@ const CartStyles = styled.div`
 `;
 const Cart = () => {
   const { globalState, setGlobalState } = React.useContext(GlobalContext);
-  const { url, orderId } = globalState;
+  const { url, orderId, token } = globalState;
   const { cartOpen, closeCart } = useCart();
   const [order, setOrder] = React.useState(null);
+  const [user, setUser] = React.useState(null);
+  // const user = useUser();
+  // console.log(user);
+  console.log(token);
+  const getUser = async () => {
+    const response = await fetch(`${url}/auto_login`, {
+      headers: {
+        "Content-Type": "application/JSON",
+        Authorization: `bearer: ${token}`,
+      },
+    });
+    const data = await response.json();
+    console.log(data.orders);
+    setUser(data);
+    return data;
+  };
 
   const getOrder = async () => {
     if (orderId) {
@@ -75,22 +92,30 @@ const Cart = () => {
 
   React.useEffect(() => {
     getOrder();
+    getUser();
   }, [cartOpen]);
+
+  if (user === null) return null;
 
   return (
     <CartStyles open={cartOpen}>
-      <h1>Your Cart </h1>
+      <h1>{user.username}'s Cart</h1>
       <button onClick={closeCart} className="close-btn">
         &times;{" "}
       </button>
-      {order !== null &&
+      {/* <ul>
+        {user.orders.map((item) => {
+          <CartItem item={item} handleDelete={handleDelete} key={item} />;
+        })}
+      </ul> */}
+      {/* {order !== null &&
         order.cartitems.map((cartitem) => (
           <CartItem
             item={cartitem}
             handleDelete={handleDelete}
             key={cartitem.id}
           />
-        ))}
+        ))} */}
     </CartStyles>
   );
 };

@@ -14,9 +14,10 @@ const Nav = (props) => {
     return (
       <Link
         to="/"
-        onClick={() =>
-          setGlobalState({ ...globalState, token: null, userId: null })
-        }
+        onClick={() => {
+          setGlobalState({ ...globalState, token: null, userId: null });
+          window.localStorage.removeItem("token");
+        }}
       >
         Log Out
       </Link>
