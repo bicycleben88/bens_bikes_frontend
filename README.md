@@ -43,6 +43,22 @@ This is a front end e-commerce web application built with React. Users can creat
 > - ![use cart hook](https://i.imgur.com/WRMtv1D.png)
 >   - export hook & provider component
 > - ![export](https://i.imgur.com/4vwOCVi.png)
+>
+> Store JWT Tokens in Local Storage
+>
+> - Keeps a a user logged in if page is reloaded
+> - Make fetch request to API end point
+>   - will return a JWT token
+>   - save token in local storage thru the window object
+>     ![set item local storage](https://i.imgur.com/2SKQmfh.png)
+> - In App.js
+>   - look for token in local storage
+>   - add it to globalState
+>     ![app global state](https://i.imgur.com/XaCXrc0.png)
+> - To log out
+>   - remove token from local storage
+>   - set token in globalState to null
+>     ![log out button](https://i.imgur.com/qY7Xmyq.png)
 
 ## Notes
 

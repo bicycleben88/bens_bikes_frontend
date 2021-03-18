@@ -53,7 +53,7 @@ function App() {
       setGlobalState({ ...globalState, token: token });
     }
   }, []);
-  console.log(globalState);
+
   return (
     <GlobalContext.Provider value={{ globalState, setGlobalState }}>
       <ThemeProvider theme={theme}>
