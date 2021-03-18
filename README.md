@@ -46,7 +46,7 @@ This is a front end e-commerce web application built with React. Users can creat
 >
 > Store JWT Tokens in Local Storage
 >
-> - Keeps a a user logged in if page is reloaded
+> - Keeps a user logged in if page is reloaded
 > - Make fetch request to API end point
 >   - will return a JWT token
 >   - save token in local storage thru the window object
