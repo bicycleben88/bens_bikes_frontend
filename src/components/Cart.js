@@ -39,7 +39,6 @@ const Cart = () => {
   const [user, setUser] = React.useState(null);
   // const user = useUser();
   // console.log(user);
-  console.log(token);
   const getUser = async () => {
     const response = await fetch(`${url}/auto_login`, {
       headers: {
@@ -53,13 +52,13 @@ const Cart = () => {
     return data;
   };
 
-  const getOrder = async () => {
-    if (orderId) {
-      const response = await fetch(`${url}/orders/${orderId}`);
-      const data = await response.json();
-      await setOrder(data);
-    }
-  };
+  // const getOrder = async () => {
+  //   if (orderId) {
+  //     const response = await fetch(`${url}/orders/${orderId}`);
+  //     const data = await response.json();
+  //     await setOrder(data);
+  //   }
+  // };
 
   const handleDelete = (itemId, orderId) => {
     // if deleting the last item in the cart
@@ -68,7 +67,7 @@ const Cart = () => {
       deleteOrder(orderId);
     } else {
       deleteItem(itemId);
-      getOrder();
+      // getOrder();
     }
   };
 
@@ -91,7 +90,7 @@ const Cart = () => {
   };
 
   React.useEffect(() => {
-    getOrder();
+    // getOrder();
     getUser();
   }, [cartOpen]);
 
@@ -104,7 +103,7 @@ const Cart = () => {
         &times;{" "}
       </button>
       {/* <ul>
-        {user.orders.map((item) => {
+        {user.orders[user.orders.length - 1].map((item) => {
           <CartItem item={item} handleDelete={handleDelete} key={item} />;
         })}
       </ul> */}

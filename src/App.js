@@ -68,13 +68,7 @@ function App() {
                   path="/"
                   render={(rProps) => <Items {...rProps} />}
                 />
-                <Route
-                  exact
-                  path="/show"
-                  render={(rProps) => (
-                    <Show {...rProps} item={globalState.item} />
-                  )}
-                />
+                <Route path="/show/:id" component={Show} />
                 <Route
                   exact
                   path="/error"
