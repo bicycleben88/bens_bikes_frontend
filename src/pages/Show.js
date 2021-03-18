@@ -1,72 +1,87 @@
-import React from 'react';
-import { GlobalContext } from '../App';
-import BigButtonStyles from '../components/styles/BigButtonStyles';
-import ShowStyles from '../components/styles/ShowStyles';
+import React from "react";
+import { GlobalContext } from "../App";
+import BigButtonStyles from "../components/styles/BigButtonStyles";
+import ShowStyles from "../components/styles/ShowStyles";
 
 const Show = (props) => {
-    const { globalState, setGlobalState } = React.useContext(GlobalContext);
-    const { url, itemsInOrder, orderId, userId, token } = globalState;
-    const { item } = props;
+  const id = props.match.params.id;
+  const { globalState, setGlobalState } = React.useContext(GlobalContext);
+  const { url, itemsInOrder, orderId, userId, token } = globalState;
+  const [item, setItem] = React.useState(null);
 
-    // run appropriate function when user is logged in 
-    const routeCreateFunctions = () => {
-        if (userId && token) {
-            createOrder(item);
-        } else {
-            props.history.push('/login');
-        };
-    };
-    
-    const createOrder = async (item) => {
-        // if cart is empty
-            // create a new order
-        if (!itemsInOrder) {
-            const response = await fetch(`${url}/orders`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/JSON",
-                    Authorization: `bearer: ${token}`
-                },
-                body: JSON.stringify({qty: 1, user_id: userId})
-            });
-            const data = await response.json();
-            await createOrderItem(data.id, item);
-            await setGlobalState({...globalState, orderId: data.id, itemsInOrder: true})
-        } else {
-            createOrderItem(orderId, item);
-        };
-    };
+  const getItem = async () => {
+    const response = await fetch(`${url}/items/${id}`);
+    const data = await response.json();
+    await setItem(data);
+  };
 
-    const createOrderItem = async (id, item) => {
-        // create new item with order_id 
-        const orderItem = {...item, order_id: id};
-        await fetch(`${url}/cartitems`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/JSON", 
-                Authorization: `bearer: ${token}`
-            },
-            body: JSON.stringify(orderItem)
-        });
-    };
+  // run appropriate function when user is logged in
+  const routeCreateFunctions = () => {
+    if (token) {
+      createOrder(item);
+    } else {
+      props.history.push("/login");
+    }
+  };
 
-    return(
-        <ShowStyles>
-            <h1>{item.name}</h1>
-            <div 
-                style={{position: "relative"}}>
-                <img 
-                    src={item.largeimage} 
-                    alt={item.name} />
-                <BigButtonStyles 
-                    onClick={() => routeCreateFunctions()}>
-                    Add To Cart
-                </BigButtonStyles>
-            </div>
-            <h4>{item.description}</h4>
-            <p>Left In Stock: {item.qty}</p>
-        </ShowStyles>
+  const createOrder = async (item) => {
+    // if cart is empty
+    // create a new order
+    if (!itemsInOrder) {
+      const response = await fetch(`${url}/orders`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/JSON",
+          Authorization: `bearer: ${token}`,
+        },
+        body: JSON.stringify({ qty: 1, user_id: userId }),
+      });
+      const data = await response.json();
+      await createOrderItem(data.id, item);
+      await setGlobalState({
+        ...globalState,
+        orderId: data.id,
+        itemsInOrder: true,
+      });
+    } else {
+      createOrderItem(orderId, item);
+    }
+  };
+
+  const createOrderItem = async (id, item) => {
+    // create new item with order_id
+    const orderItem = { ...item, order_id: id };
+    await fetch(`${url}/cartitems`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/JSON",
+        Authorization: `bearer: ${token}`,
+      },
+      body: JSON.stringify(orderItem),
+    });
+  };
+
+  React.useEffect(() => {
+    getItem();
+  }, []);
+
+  const loading = () => {
+    return (
+      <ShowStyles>
+        <h1>{item.name}</h1>
+        <div style={{ position: "relative" }}>
+          <img src={item.largeimage} alt={item.name} />
+          <BigButtonStyles onClick={() => routeCreateFunctions()}>
+            Add To Cart
+          </BigButtonStyles>
+        </div>
+        <h4>{item.description}</h4>
+        <p>Left In Stock: {item.qty}</p>
+      </ShowStyles>
     );
+  };
+
+  return item ? loading() : <h1>Loading Item...</h1>;
 };
 
 export default Show;

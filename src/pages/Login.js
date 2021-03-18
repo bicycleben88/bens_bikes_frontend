@@ -15,13 +15,20 @@ const Login = (props) => {
       body: JSON.stringify(user),
     });
     const data = await response.json();
-    await window.localStorage.setItem("token", JSON.stringify(data.token));
-    await setGlobalState({
-      ...globalState,
-      token: data.token,
-      userId: data.user.id,
-    });
-    props.history.push("/");
+    if (data.error) {
+      props.history.push("/error", {
+        error: data.error,
+      });
+    }
+    if (data.user) {
+      await window.localStorage.setItem("token", JSON.stringify(data.token));
+      await setGlobalState({
+        ...globalState,
+        token: data.token,
+        userId: data.user.id,
+      });
+      props.history.push("/");
+    }
   };
 
   return <Form label="Log In" submit={logInUser} />;

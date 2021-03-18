@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
 import Items from "./pages/Items";
 import Show from "./pages/Show";
-// import Cart from './pages/Cart';
+import Error from "./pages/Error";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Thanks from "./pages/Thanks";
@@ -68,17 +68,12 @@ function App() {
                   path="/"
                   render={(rProps) => <Items {...rProps} />}
                 />
+                <Route path="/show/:id" component={Show} />
                 <Route
                   exact
-                  path="/show"
-                  render={(rProps) => (
-                    <Show {...rProps} item={globalState.item} />
-                  )}
+                  path="/error"
+                  render={(rProps) => <Error {...rProps} />}
                 />
-                {/* <Route exact path="/cart" 
-              render={rProps => 
-                <Cart {...rProps}  
-              item={globalState.item} />} /> */}
                 <Route
                   exact
                   path="/login"
