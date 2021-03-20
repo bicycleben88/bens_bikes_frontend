@@ -3,8 +3,7 @@ import CartItemStyles from "../components/styles/CartItemStyles";
 import SmallButtonStyles from "../components/styles/SmallButtonStyle";
 
 const CartItem = (props) => {
-  const { item, handleDelete } = props;
-
+  const { item, handleDelete, cartItemId } = props;
   return (
     <CartItemStyles>
       <div
@@ -15,7 +14,7 @@ const CartItem = (props) => {
         <h3>{item.name}</h3>
         <p>{item.price}</p>
         <SmallButtonStyles
-          onClick={() => handleDelete(item.id, item.order_id)}
+          onClick={() => handleDelete(cartItemId)}
           style={{ width: "100px" }}
         >
           Remove Item

@@ -8,7 +8,6 @@ import Error from "./pages/Error";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Thanks from "./pages/Thanks";
-import Cart from "./components/Cart";
 import { CartStateProvider } from "./lib/cartState";
 
 export const GlobalContext = React.createContext(null);
@@ -39,7 +38,7 @@ const StyledPage = styled.div`
 
 function App() {
   const [globalState, setGlobalState] = React.useState({
-    url: "https://bens-bikes-backend.herokuapp.com",
+    url: "https://bens-bikes-backend.herokuapp.com/",
     item: null,
     itemsInOrder: false,
     orderId: null,
@@ -61,7 +60,6 @@ function App() {
           <StyledPage className="App">
             <Header />
             <main>
-              <Cart />
               <Switch>
                 <Route
                   exact
