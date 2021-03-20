@@ -6,7 +6,7 @@ import ShowStyles from "../components/styles/ShowStyles";
 const Show = (props) => {
   const id = props.match.params.id;
   const { globalState, setGlobalState } = React.useContext(GlobalContext);
-  const { url, itemsInOrder, orderId, userId, token } = globalState;
+  const { url, userId, token } = globalState;
   const [item, setItem] = React.useState(null);
 
   const getItem = async () => {
@@ -15,50 +15,19 @@ const Show = (props) => {
     await setItem(data);
   };
 
-  // run appropriate function when user is logged in
-  const routeCreateFunctions = () => {
-    if (token) {
-      createOrder(item);
-    } else {
-      props.history.push("/login");
-    }
-  };
-
-  const createOrder = async (item) => {
-    // if cart is empty
-    // create a new order
-    if (!itemsInOrder) {
-      const response = await fetch(`${url}/orders`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/JSON",
-          Authorization: `bearer: ${token}`,
-        },
-        body: JSON.stringify({ qty: 1, user_id: userId }),
-      });
-      const data = await response.json();
-      await createOrderItem(data.id, item);
-      await setGlobalState({
-        ...globalState,
-        orderId: data.id,
-        itemsInOrder: true,
-      });
-    } else {
-      createOrderItem(orderId, item);
-    }
-  };
-
-  const createOrderItem = async (id, item) => {
-    // create new item with order_id
-    const orderItem = { ...item, order_id: id };
-    await fetch(`${url}/cartitems`, {
+  const addToCart = async () => {
+    const response = await fetch(`${url}/cartitems`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/JSON",
+        "content-type": "application/json",
         Authorization: `bearer: ${token}`,
       },
-      body: JSON.stringify(orderItem),
+      body: JSON.stringify({
+        item_id: id,
+        user_id: userId,
+      }),
     });
+    const data = await response.json();
   };
 
   React.useEffect(() => {
@@ -71,7 +40,7 @@ const Show = (props) => {
         <h1>{item.name}</h1>
         <div style={{ position: "relative" }}>
           <img src={item.largeimage} alt={item.name} />
-          <BigButtonStyles onClick={() => routeCreateFunctions()}>
+          <BigButtonStyles onClick={() => addToCart()}>
             Add To Cart
           </BigButtonStyles>
         </div>
