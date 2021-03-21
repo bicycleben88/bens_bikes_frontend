@@ -21,8 +21,8 @@ const Cart = () => {
     await setUser(data);
   };
 
-  const deleteCartItem = async (id) => {
-    await fetch(`${url}/cartitems/${id}`, {
+  const deleteCartItem = async (cartItemId) => {
+    await fetch(`${url}/cartitems/${cartItemId}`, {
       method: "DELETE",
     });
     getUser();
