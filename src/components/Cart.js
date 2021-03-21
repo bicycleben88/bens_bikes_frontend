@@ -56,7 +56,7 @@ const Cart = () => {
     );
   };
 
-  return user ? loading() : <h1>loading cart...</h1>;
+  return user ? loading() : "";
 };
 
 export default Cart;
