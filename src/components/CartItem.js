@@ -4,17 +4,19 @@ import SmallButtonStyles from "../components/styles/SmallButtonStyle";
 
 const CartItem = (props) => {
   const { item, handleDelete, cartItemId } = props;
+  console.log(item);
   return (
     <CartItemStyles>
       <div
-        style={{ backgroundImage: `url("${item.image}")` }}
+        style={{ backgroundImage: `url("${item.item.image}")` }}
         className="cart-item-image"
       />
       <div className="cart-item-info">
-        <h3>{item.name}</h3>
-        <p>{item.price}</p>
+        <h3>{item.item.name}</h3>
+        <p>{item.item.price}</p>
+        <p>Qty: {item.quantity} &times;</p>
         <SmallButtonStyles
-          onClick={() => handleDelete(cartItemId)}
+          onClick={() => handleDelete(item.id)}
           style={{ width: "100px" }}
         >
           Remove Item

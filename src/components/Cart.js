@@ -44,10 +44,9 @@ const Cart = () => {
             user.cartitems.map((cartItem) => {
               return (
                 <CartItem
-                  item={cartItem.item}
+                  item={cartItem}
                   key={cartItem.id}
                   handleDelete={deleteCartItem}
-                  cartItemId={cartItem.id}
                 />
               );
             })}
