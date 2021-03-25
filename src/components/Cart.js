@@ -28,6 +28,21 @@ const Cart = () => {
     getUser();
   };
 
+  const handleCheckout = async () => {
+    const response = await fetch(`${url}/orders`, {
+      method: "POST",
+      headers: {
+        Authorization: `bearer: ${token}`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        user_id: user.id,
+      }),
+    });
+    const data = await response.json();
+    await console.log(data);
+  };
+
   React.useEffect(() => {
     getUser();
   }, [cartOpen]);
@@ -51,6 +66,7 @@ const Cart = () => {
               );
             })}
         </ul>
+        <button onClick={handleCheckout}>Checkout Out</button>
       </CartStyles>
     );
   };
