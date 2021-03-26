@@ -3,8 +3,7 @@ import CartItemStyles from "../components/styles/CartItemStyles";
 import SmallButtonStyles from "../components/styles/SmallButtonStyle";
 
 const CartItem = (props) => {
-  const { item, handleDelete, cartItemId } = props;
-  console.log(item);
+  const { item, handleDelete } = props;
   return (
     <CartItemStyles>
       <div

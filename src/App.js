@@ -7,7 +7,7 @@ import Show from "./pages/Show";
 import Error from "./pages/Error";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Thanks from "./pages/Thanks";
+import Order from "./pages/Order";
 import { CartStateProvider } from "./lib/cartState";
 
 export const GlobalContext = React.createContext(null);
@@ -39,7 +39,7 @@ const StyledPage = styled.div`
 function App() {
   const [globalState, setGlobalState] = React.useState({
     url: "https://bens-bikes-backend.herokuapp.com/",
-//     url: "http://localhost:3000",
+    //     url: "http://localhost:3000",
     item: null,
     itemsInOrder: false,
     orderId: null,
@@ -83,11 +83,7 @@ function App() {
                   path="/signup"
                   render={(rProps) => <Signup {...rProps} />}
                 />
-                <Route
-                  exact
-                  path="/spanx"
-                  render={(rProps) => <Thanks {...rProps} />}
-                />
+                <Route path="/orders/:id" component={Order} />
               </Switch>
             </main>
           </StyledPage>

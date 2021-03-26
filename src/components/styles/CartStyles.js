@@ -14,6 +14,10 @@ const CartStyles = styled.div`
   background-color: ${(props) => props.theme.offwhite};
   transform: translateX(100%);
   transition: transform 0.2s;
+  ul {
+    flex: 1;
+    overflow-x: auto;
+  }
   .close-btn {
     position: absolute;
     top: 2px;
@@ -22,6 +26,13 @@ const CartStyles = styled.div`
     border: none;
   }
   .close-btn:hover {
+    cursor: pointer;
+  }
+  .checkout {
+    border: none;
+    background-color: darkorange;
+  }
+  .checkout:hover {
     cursor: pointer;
   }
   ${(props) => props.open && `transform: translateX(0)`}
