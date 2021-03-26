@@ -14,6 +14,9 @@ const CartStyles = styled.div`
   background-color: ${(props) => props.theme.offwhite};
   transform: translateX(100%);
   transition: transform 0.2s;
+  h1 {
+    padding-left: 5px;
+  }
   ul {
     flex: 1;
     overflow-x: auto;
@@ -31,6 +34,7 @@ const CartStyles = styled.div`
   .checkout {
     border: none;
     background-color: darkorange;
+    padding: 5px;
   }
   .checkout:hover {
     cursor: pointer;

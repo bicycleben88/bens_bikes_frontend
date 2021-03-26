@@ -71,7 +71,7 @@ const Cart = () => {
             })}
         </ul>
         <button className="checkout" onClick={handleCheckout}>
-          Checkout Out
+          Check Out
         </button>
       </CartStyles>
     );
