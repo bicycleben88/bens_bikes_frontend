@@ -1,18 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import {
   CardElement,
   Elements,
   useElements,
   useStripe,
 } from "@stripe/react-stripe-js";
+import { useHistory } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import CheckOutFormStyles from "./styles/CheckOutFormStyles";
 import { GlobalContext } from "../App";
+import { useCart } from "../lib/cartState";
 
 const stripeLib = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 
-const CheckOutForm = () => {
+const CheckOutForm = ({ user }) => {
+  const history = useHistory();
+  const { globalState } = React.useContext(GlobalContext);
+  const { url, token } = globalState;
+  const { closeCart } = useCart();
   const [error, setError] = React.useState();
   const [loading, setLoading] = React.useState();
   const stripe = useStripe();
@@ -20,6 +25,7 @@ const CheckOutForm = () => {
 
   const handleCheckout = async (e) => {
     e.preventDefault();
+
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement),
@@ -28,21 +34,21 @@ const CheckOutForm = () => {
       setError(error);
       return;
     }
-    console.log({ paymentMethod });
-    // const response = await fetch(`${url}/orders`, {
-    //   method: "POST",
-    //   headers: {
-    //     Authorization: `bearer: ${token}`,
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     user_id: user.id,
-    //   }),
-    // });
-    // const data = await response.json();
-    // await console.log(data);
-    // history.push(`/orders/${data.id}`);
-    // closeCart();
+
+    const response = await fetch(`${url}/orders`, {
+      method: "POST",
+      headers: {
+        Authorization: `bearer: ${token}`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        user_id: user.id,
+        stripe_token: paymentMethod.id,
+      }),
+    });
+    const data = await response.json();
+    history.push(`/orders/${data.id}`);
+    closeCart();
   };
 
   return (
@@ -54,10 +60,10 @@ const CheckOutForm = () => {
   );
 };
 
-const CheckOut = () => {
+const CheckOut = ({ user }) => {
   return (
     <Elements stripe={stripeLib}>
-      <CheckOutForm />
+      <CheckOutForm user={user} />
     </Elements>
   );
 };

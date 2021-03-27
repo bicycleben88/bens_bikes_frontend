@@ -1,5 +1,4 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import { useCart } from "../lib/cartState";
 import { GlobalContext } from "../App";
 import CartItem from "./CartItem";
@@ -7,7 +6,6 @@ import CartStyles from "./styles/CartStyles";
 import CheckOut from "./CheckOut";
 
 const Cart = () => {
-  const history = useHistory();
   const { globalState } = React.useContext(GlobalContext);
   const { url, token } = globalState;
   const { cartOpen, closeCart } = useCart();
@@ -30,23 +28,6 @@ const Cart = () => {
     });
     getUser();
   };
-
-  // const handleCheckout = async () => {
-  //   const response = await fetch(`${url}/orders`, {
-  //     method: "POST",
-  //     headers: {
-  //       Authorization: `bearer: ${token}`,
-  //       "content-type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       user_id: user.id,
-  //     }),
-  //   });
-  //   const data = await response.json();
-  //   await console.log(data);
-  //   history.push(`/orders/${data.id}`);
-  //   closeCart();
-  // };
 
   React.useEffect(() => {
     getUser();
@@ -71,10 +52,7 @@ const Cart = () => {
               );
             })}
         </ul>
-        <CheckOut />
-        {/* <button className="checkout" onClick={handleCheckout}>
-          Check Out
-        </button> */}
+        <CheckOut user={user} />
       </CartStyles>
     );
   };
