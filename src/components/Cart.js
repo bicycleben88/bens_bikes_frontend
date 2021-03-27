@@ -4,6 +4,7 @@ import { useCart } from "../lib/cartState";
 import { GlobalContext } from "../App";
 import CartItem from "./CartItem";
 import CartStyles from "./styles/CartStyles";
+import CheckOut from "./CheckOut";
 
 const Cart = () => {
   const history = useHistory();
@@ -30,22 +31,22 @@ const Cart = () => {
     getUser();
   };
 
-  const handleCheckout = async () => {
-    const response = await fetch(`${url}/orders`, {
-      method: "POST",
-      headers: {
-        Authorization: `bearer: ${token}`,
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        user_id: user.id,
-      }),
-    });
-    const data = await response.json();
-    await console.log(data);
-    history.push(`/orders/${data.id}`);
-    closeCart();
-  };
+  // const handleCheckout = async () => {
+  //   const response = await fetch(`${url}/orders`, {
+  //     method: "POST",
+  //     headers: {
+  //       Authorization: `bearer: ${token}`,
+  //       "content-type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       user_id: user.id,
+  //     }),
+  //   });
+  //   const data = await response.json();
+  //   await console.log(data);
+  //   history.push(`/orders/${data.id}`);
+  //   closeCart();
+  // };
 
   React.useEffect(() => {
     getUser();
@@ -70,9 +71,10 @@ const Cart = () => {
               );
             })}
         </ul>
-        <button className="checkout" onClick={handleCheckout}>
+        <CheckOut />
+        {/* <button className="checkout" onClick={handleCheckout}>
           Check Out
-        </button>
+        </button> */}
       </CartStyles>
     );
   };

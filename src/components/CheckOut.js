@@ -1,49 +1,65 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import CheckOutStyles from '../components/styles/CheckOutStyles';
-import BigButtonStyles from '../components/styles/BigButtonStyles';
-import { GlobalContext } from '../App';
+import React from "react";
+import { Link } from "react-router-dom";
+import {
+  CardElement,
+  Elements,
+  useElements,
+  useStripe,
+} from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import CheckOutFormStyles from "./styles/CheckOutFormStyles";
+import { GlobalContext } from "../App";
 
-const CheckOut = (props) => {
-    const { globalState, setGlobalState } = React.useContext(GlobalContext);
-    const { items } = props;
-    let itemNames = [];
-    let itemPrices = [];
+const stripeLib = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 
-    items.map(item => {
-        itemNames.push(item.name);
-        itemPrices.push(item.price);
+const CheckOutForm = () => {
+  const [error, setError] = React.useState();
+  const [loading, setLoading] = React.useState();
+  const stripe = useStripe();
+  const elements = useElements();
+
+  const handleCheckout = async (e) => {
+    e.preventDefault();
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
+      card: elements.getElement(CardElement),
     });
+    if (error) {
+      setError(error);
+      return;
+    }
+    console.log({ paymentMethod });
+    // const response = await fetch(`${url}/orders`, {
+    //   method: "POST",
+    //   headers: {
+    //     Authorization: `bearer: ${token}`,
+    //     "content-type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     user_id: user.id,
+    //   }),
+    // });
+    // const data = await response.json();
+    // await console.log(data);
+    // history.push(`/orders/${data.id}`);
+    // closeCart();
+  };
 
-    const priceTotal = itemPrices.reduce((acc, val) => parseInt(acc) + parseInt(val));
+  return (
+    <CheckOutFormStyles onSubmit={handleCheckout}>
+      {error && <p className="error">{error.message}</p>}
+      <CardElement />
+      <button className="checkout">Check Out</button>
+    </CheckOutFormStyles>
+  );
+};
 
-    const changeGlobalState = () => {
-        setGlobalState({...globalState, itemsInOrder: false, orderId: null});
-    };
-    
-    return(
-        <CheckOutStyles>
-            <h1>Your Cart</h1>
-            <hr/>
-            <h2>Item</h2>
-            {itemNames.map(item => <p>{item}</p>)}
-            <hr/>
-            <h2>Subtotal</h2>
-            <p>{priceTotal}</p>
-            <h2>Shipping</h2>
-            <p>19.99</p>
-            <hr/>
-            <h1>Total</h1>
-            <h2 style={{color: "red"}}>{parseInt(priceTotal) + 19.99}</h2>
-            <Link 
-                to="/spanx" 
-                onClick={() => changeGlobalState()}>
-                <BigButtonStyles>
-                    Check Out
-                </BigButtonStyles>
-            </Link>
-        </CheckOutStyles>
-    )
+const CheckOut = () => {
+  return (
+    <Elements stripe={stripeLib}>
+      <CheckOutForm />
+    </Elements>
+  );
 };
 
 export default CheckOut;
