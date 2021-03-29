@@ -82,10 +82,22 @@ This is a front end e-commerce web application built with React. Users can creat
 >   - send user id & item id in the request body
 >
 > ![add to cart function](https://i.imgur.com/245G9Wh.png)
+>
+> ### Stripe Credit Card Payments
+>
+> #### Configuring Stripe
+>
+> - Create Stripe account to get API keys
+> - Add .env.local file to root directory & add it to .gitignore
+> - Add key/value pairs e.g. REACT_APP_SECRET_KEY="api secret key"
 
 ## Notes
 
 > - Context.Provider allows consuming components to subscribe to context changes
+
+## Sources
+
+> [Stripe](https://stripe.com/)
 
 ## Contact
 
