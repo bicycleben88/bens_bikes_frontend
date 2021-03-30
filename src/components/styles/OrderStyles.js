@@ -5,13 +5,17 @@ const OrderStyles = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: ${(props) => props.theme.offwhite};
+  font-size: 12px;
+  width: 100%;
+  text-align: center;
   .order-items {
     padding: 0;
+    width: 80%;
+    border-bottom: 2px solid darkorange;
   }
   .order-items li {
     list-style: none;
-    border-bottom: 2px solid darkorange;
-    background-color: ${(props) => props.theme.lightBlue};
     padding: 5px;
     margin-bottom: 5px;
   }
