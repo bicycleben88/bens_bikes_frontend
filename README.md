@@ -90,6 +90,36 @@ This is a front end e-commerce web application built with React. Users can creat
 > - Create Stripe account to get API keys
 > - Add .env.local file to root directory & add it to .gitignore
 > - Add key/value pairs e.g. REACT_APP_SECRET_KEY="api secret key"
+>
+> #### CheckOut Component
+>
+> - imports from stripe:
+> - ![stripe imports](https://i.imgur.com/auPgVBP.png)
+> - configure stripe w/API key
+> - ![stripe config](https://i.imgur.com/5fc5y6N.png)
+> - return Stripe Element w/ checkout form, passing down stripe configuration & user as props
+> - ![checkout component](https://i.imgur.com/iuDTapI.png)
+>
+> #### CheckOut Form
+>
+> - create state to handle loading & errors
+> - ![checkout form state](https://i.imgur.com/PSjHAIQ.png)
+> - return \<form> w/ messages to handle loading and errors, & Stripe \<CardElement>
+> - ![checkout form component](https://i.imgur.com/Hty3dEG.png)
+> - save Stripe hooks to variables that will be used when submitting checkout form
+> - ![stripe hooks](https://i.imgur.com/Qvwg2u1.png)
+>
+> handleCheckout()
+>
+> - preventDefault() - stop page from reloading
+> - setLoading(true) - prints loading message
+> - create Stripe payment method w/ async function
+> - ![stripe payment method](https://i.imgur.com/l7Ip7RG.png)
+> - handle error w/ if() statement - prints error message
+> - make post request to API to create Order w/ order details & Stripe payment token
+> - ![order API](https://i.imgur.com/DjLsvgA.png)
+> - redirect to order page, clear form, close cart, reset loading and error state
+> - ![clear form](https://i.imgur.com/f7qTkSP.png)
 
 ## Notes
 
