@@ -26,12 +26,16 @@ const CheckOutForm = ({ user }) => {
   const handleCheckout = async (e) => {
     e.preventDefault();
 
+    setLoading(true);
+
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement),
     });
+
     if (error) {
       setError(error);
+      setLoading(false);
       return;
     }
 
@@ -47,13 +51,18 @@ const CheckOutForm = ({ user }) => {
       }),
     });
     const data = await response.json();
+
     history.push(`/orders/${data.id}`);
+    elements.getElement(CardElement).clear(); // clear CC form
     closeCart();
+    setError();
+    setLoading(false);
   };
 
   return (
     <CheckOutFormStyles onSubmit={handleCheckout}>
-      {error && <p className="error">{error.message}</p>}
+      {error && <p className="message">{error.message}</p>}
+      {loading && <p className="message">Processing Payment...</p>}
       <CardElement />
       <button className="checkout">Check Out</button>
     </CheckOutFormStyles>

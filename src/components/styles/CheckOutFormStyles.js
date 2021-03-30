@@ -7,8 +7,11 @@ const CheckOutFormStyles = styled.form`
   .error {
     padding: 5px;
   }
-  .error {
+  .message {
     margin: 0;
+    padding-left: 5px;
+    font-size: 13px;
+    color: red;
   }
 `;
 
