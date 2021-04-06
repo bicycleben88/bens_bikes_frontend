@@ -62,10 +62,6 @@ function App() {
             <Header />
             <main>
               <Switch>
-                <Route
-                  path={["/", "/items", "/items/:id"]}
-                  component={ItemsPage}
-                />
                 <Route path="/show/:id" component={Show} />
                 <Route
                   exact
@@ -83,6 +79,10 @@ function App() {
                   render={(rProps) => <Signup {...rProps} />}
                 />
                 <Route path="/orders/:id" component={Order} />
+                <Route
+                  path={["/items/:id", "/", "/items"]}
+                  component={ItemsPage}
+                />
               </Switch>
             </main>
           </StyledPage>
