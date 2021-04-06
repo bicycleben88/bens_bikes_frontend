@@ -2,13 +2,13 @@ import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
-import Items from "./pages/Items";
 import Show from "./pages/Show";
 import Error from "./pages/Error";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Order from "./pages/Order";
 import { CartStateProvider } from "./lib/cartState";
+import ItemsPage from "./pages/ItemsPage";
 
 export const GlobalContext = React.createContext(null);
 
@@ -63,9 +63,8 @@ function App() {
             <main>
               <Switch>
                 <Route
-                  exact
-                  path="/"
-                  render={(rProps) => <Items {...rProps} />}
+                  path={["/", "/items", "/items/:id"]}
+                  component={ItemsPage}
                 />
                 <Route path="/show/:id" component={Show} />
                 <Route
