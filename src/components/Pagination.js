@@ -20,11 +20,11 @@ const Pagination = (props) => {
 
   return (
     <PaginationStyles>
-      <Link to="/products/1">
+      <Link to="/items">
         Prev
         <img src="arrow-back-outline.svg" alt="forward arrow" />
       </Link>
-      <Link to="/products/2">
+      <Link to="/items">
         Next
         <img src="arrow-forward-outline.svg" alt="forward arrow" />
       </Link>

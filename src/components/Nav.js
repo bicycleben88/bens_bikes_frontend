@@ -26,7 +26,7 @@ const Nav = (props) => {
 
   return (
     <NavStyles>
-      <Link to="/">Items</Link>
+      <Link to="/items">Items</Link>
       <button onClick={openCart} className="cart-btn">
         Cart
         {itemsInOrder ? (

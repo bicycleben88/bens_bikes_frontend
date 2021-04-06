@@ -1,9 +1,7 @@
 import React from "react";
-import Carousel from "react-image-carousel";
-import ItemsContainer from "../components/styles/ItemsContainer";
 import { GlobalContext } from "../App";
+import ItemsContainer from "../components/styles/ItemsContainer";
 import Item from "../components/Item";
-import Pagination from "../components/Pagination";
 
 const Items = (props) => {
   const { globalState } = React.useContext(GlobalContext);
@@ -22,19 +20,15 @@ const Items = (props) => {
 
   const loaded = () => {
     return (
-      <div>
-        <Pagination />
-        <ItemsContainer>
-          {items.map((item) => (
-            <Item item={item} key={item.id} />
-          ))}
-        </ItemsContainer>
-        <Pagination />
-      </div>
+      <ItemsContainer>
+        {items.map((item) => (
+          <Item item={item} key={item.id} />
+        ))}
+      </ItemsContainer>
     );
   };
 
-  return Items.length > 0 ? loaded() : <h3>getting items...</h3>;
+  return items ? loaded() : <h1>getting items...</h1>;
 };
 
 export default Items;
