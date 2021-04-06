@@ -2,8 +2,9 @@ import styled from "styled-components";
 
 const PaginationStyles = styled.div`
   display: flex;
+  justify-content: space-around;
   a {
-    border: 1px solid black;
+    color: ${(props) => props.theme.black};
   }
 `;
 

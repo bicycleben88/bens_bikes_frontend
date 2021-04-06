@@ -5,6 +5,7 @@ import ShowStyles from "../components/styles/ShowStyles";
 
 const Show = (props) => {
   const id = props.match.params.id;
+  console.log(props.match.params.id);
   const { globalState, setGlobalState } = React.useContext(GlobalContext);
   const { url, userId, token } = globalState;
   const [item, setItem] = React.useState(null);

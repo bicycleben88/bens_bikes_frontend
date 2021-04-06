@@ -3,11 +3,12 @@ import Items from "../components/Items";
 import Pagination from "../components/Pagination";
 
 const ItemsPage = (props) => {
+  const page = parseInt(props.match.params.id);
   return (
     <div>
-      <Pagination />
+      <Pagination page={page || 1} />
       <Items />
-      <Pagination />
+      <Pagination page={page || 1} />
     </div>
   );
 };
