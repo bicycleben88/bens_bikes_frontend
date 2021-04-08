@@ -7,7 +7,7 @@ const ItemsPage = (props) => {
   return (
     <div>
       <Pagination page={page || 1} />
-      <Items />
+      <Items page={page || 1} />
       <Pagination page={page || 1} />
     </div>
   );
