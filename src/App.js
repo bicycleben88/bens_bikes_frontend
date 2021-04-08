@@ -20,7 +20,7 @@ const theme = {
   offwhite: "#f8f8ff",
   maxWidth: "1100px",
   black: "#393939",
-  boxS: "0 12px 12px 0 #f0f046",
+  boxS: "0 0 10px 4px #f0f046",
 };
 
 const StyledPage = styled.div`
