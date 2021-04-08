@@ -26,10 +26,10 @@ const Pagination = ({ page }) => {
         <img src="arrow-back-outline.svg" alt="forward arrow" />
         Prev
       </Link>
-      <p>
+      <h3>
         {" "}
         Page {page} of {pageCount}
-      </p>
+      </h3>
       <Link to={page < pageCount && `/items/${page + 1}`}>
         <img src="arrow-forward-outline.svg" alt="forward arrow" />
         Next

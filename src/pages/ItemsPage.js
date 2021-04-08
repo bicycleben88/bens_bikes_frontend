@@ -8,7 +8,6 @@ const ItemsPage = (props) => {
     <div>
       <Pagination page={page || 1} />
       <Items page={page || 1} />
-      <Pagination page={page || 1} />
     </div>
   );
 };
