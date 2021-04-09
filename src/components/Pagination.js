@@ -6,8 +6,8 @@ import PaginationStyles from "./styles/PaginationStyles";
 const Pagination = ({ page }) => {
   const { globalState } = React.useContext(GlobalContext);
   const { url } = globalState;
-  const perPage = 2;
   const [itemCount, setItemCount] = React.useState();
+  const perPage = 2;
   const pageCount = Math.ceil(itemCount / perPage);
 
   const getCount = async () => {

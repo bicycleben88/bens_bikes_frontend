@@ -30,7 +30,7 @@ This is a front end e-commerce web application built with React. Users can creat
 
 ## Features & Functions
 
-> ### Custom Hooks
+> ## Custom Hooks
 >
 > - useCart()
 >   - use createContext() to create Provider component
@@ -44,7 +44,7 @@ This is a front end e-commerce web application built with React. Users can creat
 >   - export hook & provider component
 > - ![export](https://i.imgur.com/4vwOCVi.png)
 >
-> ### Store JWT Tokens in Local Storage
+> ## Store JWT Tokens in Local Storage
 >
 > - Keeps a user logged in if page is reloaded
 > - Make fetch request to API end point
@@ -66,7 +66,7 @@ This is a front end e-commerce web application built with React. Users can creat
 >   - set token in globalState to null
 >     ![log out button](https://i.imgur.com/qY7Xmyq.png)
 >
-> ### Cart
+> ## Cart
 >
 > - use custom hook to open & close the cart (see above)
 > - make api request to get the user's cart
@@ -83,7 +83,7 @@ This is a front end e-commerce web application built with React. Users can creat
 >
 > ![add to cart function](https://i.imgur.com/245G9Wh.png)
 >
-> ### Stripe Credit Card Payments
+> ## Stripe Credit Card Payments
 >
 > #### Configuring Stripe
 >
@@ -120,6 +120,43 @@ This is a front end e-commerce web application built with React. Users can creat
 > - ![order API](https://i.imgur.com/DjLsvgA.png)
 > - redirect to order page, clear form, close cart, reset loading and error state
 > - ![clear form](https://i.imgur.com/f7qTkSP.png)
+>
+> ## Pagination
+>
+> Render \<ItemsPage> component for routes "/", "/items", & "/items/:id"
+>
+> - ![routes for items page](https://i.imgur.com/fxhPhdl.png)
+>
+> Create \<Pagination> component
+>
+> - get url from global state for API request
+> - create state to hold item count
+> - create perPage & pageCount variables to calculate the number of pages needed
+> - ![pagination variables](https://i.imgur.com/oUA4Ezw.png)
+> - make get request to API that will return a count of items in the inventory
+> - ![count api](https://i.imgur.com/4p3pxMg.png)
+> - return \<Link>s to next or previous page, disabling link when on first or last page
+> - ![link next](https://i.imgur.com/s8JVOz0.png)
+> - ![link prev](https://i.imgur.com/zhmnrMY.png)
+>
+> Add \<Pagination> component to \<ItemsPage>
+>
+> - get page number from query param in URL
+> - ![page query param](https://i.imgur.com/VebOecR.png)
+> - return \<Items> & \<Pagination> components, passing as props the page number
+> - ![items page component](https://i.imgur.com/PQyyUnY.png)
+>
+> Create \<Items> component
+>
+> - get url from global state for API request
+> - create state to hold items
+> - ![items variables](https://i.imgur.com/yZRb23h.png);
+> - make get request to API
+>   - include page number as query param
+>   - will return the items that will display on that page
+> - ![items api](https://i.imgur.com/96m5HZ7.png)
+> - return \<Item> component for each item in state
+> - ![items component](https://i.imgur.com/4aQ7Sox.png)
 
 ## Notes
 
