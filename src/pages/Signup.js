@@ -1,16 +1,17 @@
 import React from "react";
-import Form from "../components/Form";
+import useForm from "../lib/useForm";
 import FormStyles from "../components/styles/FormStyles";
 import { GlobalContext } from "../App";
 
-const Signup = (props) => {
+const Signup = () => {
   const { globalState } = React.useContext(GlobalContext);
   const { url } = globalState;
-  const [formData, setFormData] = React.useState({
+  const { inputs, handleChange, resetForm } = useForm({
     email: "",
     username: "",
     password: "",
   });
+  const [signedUpUser, setSignedUpUser] = React.useState(false);
 
   const signUpUser = async (e) => {
     e.preventDefault();
@@ -19,43 +20,44 @@ const Signup = (props) => {
       headers: {
         "Content-Type": "application/JSON",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(inputs),
     });
     const data = await response.json();
-    await console.log(data);
-    // props.history.push("/login");
-  };
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    resetForm();
+    return (await data) && setSignedUpUser(true);
   };
 
   return (
     <FormStyles onSubmit={signUpUser}>
       <h2>Sign Up For an Account</h2>
-
       <input
         name="email"
         placeholder="email"
-        value={formData.email}
+        value={inputs.email}
         type="text"
         onChange={handleChange}
       />
       <input
         name="username"
         placeholder="username"
-        value={formData.username}
+        value={inputs.username}
         type="text"
         onChange={handleChange}
       />
       <input
         name="password"
         placeholder="password"
-        value={formData.password}
+        value={inputs.password}
         type="password"
         onChange={handleChange}
       />
       <input value="Sign Up" type="submit" className="submit-button" />
+
+      {signedUpUser && (
+        <h3 style={{ color: "darkorange" }}>
+          Check Your Email to Activate your Account
+        </h3>
+      )}
     </FormStyles>
   );
 };
