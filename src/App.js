@@ -40,7 +40,6 @@ function App() {
   const [globalState, setGlobalState] = React.useState({
     url: "https://bens-bikes-backend.herokuapp.com",
     // url: "http://localhost:3000",
-    // userId: null,
     token: null,
   });
 
