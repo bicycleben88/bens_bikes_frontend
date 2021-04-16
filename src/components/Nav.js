@@ -15,7 +15,7 @@ const Nav = (props) => {
       <Link
         to="/"
         onClick={() => {
-          setGlobalState({ ...globalState, token: null, userId: null });
+          setGlobalState({ ...globalState, token: null });
           window.localStorage.removeItem("token");
         }}
       >
