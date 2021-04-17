@@ -54,7 +54,7 @@ const Login = (props) => {
         type="password"
         onChange={handleChange}
       />
-      <input value="Sign Up" type="submit" className="submit-button" />
+      <input value="Log In" type="submit" className="submit-button" />
     </FormStyles>
   );
 };
