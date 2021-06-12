@@ -5,7 +5,7 @@ import { GlobalContext } from "../App";
 import Badge from "../components/styles/Badge";
 import { useCart } from "../lib/cartState";
 
-const Nav = (props) => {
+const Nav = () => {
   const { globalState, setGlobalState } = React.useContext(GlobalContext);
   const { itemsInOrder, token } = globalState;
   const { openCart } = useCart();
@@ -35,9 +35,13 @@ const Nav = (props) => {
           </Badge>
         ) : null}
       </button>
-      {token ? logOut() : null}
-      <Link to="/login">Log In</Link>
-      <Link to="/signup">Sign Up</Link>
+      {token && logOut()}
+      {!token && <Link to="/login">Log In</Link>}
+      {!token && <Link to="/signup">Sign Up</Link>}
+
+      <a href="https://higginbotham.fun" target="#">
+        Portfolio
+      </a>
     </NavStyles>
   );
 };
