@@ -12,7 +12,7 @@ This is a front end e-commerce web application built with React. Users can creat
 
 ![Landing page to Ben's Bikes](https://i.imgur.com/Kt3juRq.jpg)
 
-## Technologies Used
+### Technologies Used
 
 > ### Front End:
 >
