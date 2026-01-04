@@ -38,8 +38,7 @@ const StyledPage = styled.div`
 
 function App() {
   const [globalState, setGlobalState] = React.useState({
-    //url: "https://bens-bikes-backend.herokuapp.com",
-    url: "http://localhost:3000",
+    url: process.env.REACT_APP_URL,
     token: null,
   });
 
