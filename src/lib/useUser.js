@@ -1,16 +1,16 @@
 import React from "react";
 import { GlobalContext } from "../App";
+const bearer = process.env.BEARER;
 
 const useUser = () => {
   const { globalState } = React.useContext(GlobalContext);
   const { url, token } = globalState;
   console.log(token);
   const getUser = async () => {
-    const response = await fetch(`http://localhost:3000/auto_login`, {
+    const response = await fetch(`${url}/auto_login`, {
       headers: {
         "Content-Type": "application/JSON",
-        Authorization:
-          "bearer: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3fQ.VNqXj0cIwQRJ-dAKgfdWMF9Hmmh6d8wc7dYj1hdm09U",
+        Authorization: `bearer: ${bearer}`,
       },
     });
     const data = await response.json();
