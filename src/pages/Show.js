@@ -50,6 +50,12 @@ const Show = (props) => {
         </div>
         <h4>{item.description}</h4>
         <p>Left In Stock: {item.qty}</p>
+        <div className="artist-attribution">
+          <span>Image by: </span>
+          <a href={item.artist_url} target="_blank" rel="noopener noreferrer">
+            {item.artist_name}
+          </a>
+        </div>
       </ShowStyles>
     );
   };
