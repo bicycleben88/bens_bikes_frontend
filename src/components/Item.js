@@ -9,7 +9,7 @@ const Item = (props) => {
   return (
     <ItemStyles>
       <SmallButtonStyles>{item.price}</SmallButtonStyles>
-      <img src={item.image} alt={item.name} />
+      <img src={`${process.env.REACT_APP_URL}${item.image}`} alt={item.name} />
       <Link to={`/show/${item.id}`}>
         <h3>{item.name}</h3>
       </Link>
