@@ -40,7 +40,10 @@ const Show = (props) => {
       <ShowStyles>
         <h1>{item.name}</h1>
         <div style={{ position: "relative" }}>
-          <img src={item.largeimage} alt={item.name} />
+          <img
+            src={`${process.env.REACT_APP_URL}${item.largeimage}`}
+            alt={item.name}
+          />
           <BigButtonStyles onClick={() => addToCart()}>
             Add To Cart
           </BigButtonStyles>
